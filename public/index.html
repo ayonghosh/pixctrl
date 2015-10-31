@@ -24,7 +24,22 @@
       color: #000;
       overflow-y: hidden;
     }
+	#touchpad {
+	  width: 100%;
+	  height: 100%;
+	}
+	#mouse-buttons {
+	  display: table;
+	  position: fixed;
+	  bottom: 0;
+	}
 	.mouse-btn {
+	  display: table-cell;
+	  height: 30px;
+	  background: #607D8B;
+	  border: 1px solid #CFD8DC;
+	  width: 50%;
+	  box-sizing: border-box;
 	}
   </head>
   <body>
@@ -56,6 +71,9 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       }
 	  
 	  leftMouseBtn.onclick = function () {
+	    ws.emit('lc');
+	  };
+	  touchpadEl.onclick = function () {
 	    ws.emit('lc');
 	  };
 	  rightMouseBtn.onclick = function () {
