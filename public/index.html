@@ -94,7 +94,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       dragging = false;
     };
 	  touchpadEl.ontouchmove = function (e) {
-      e.preventDefault;
+      e.preventDefault();
       var x = e.clientX;
       var y = e.clientY;
       var screenX = Math.round(x / touchpadEl.clientWidth * 592);

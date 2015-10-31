@@ -17,7 +17,7 @@ module.exports = (function (config) {
     xctrl.initDisplay();
   };
   _cmdMap[COMMAND.MOUSE_MOVE] = function (args) {
-    xctrl.moveMouse(args[0], args[1]);
+    xctrl.moveMouse(args[0], args[1], args[2]);
   };
   _cmdMap[COMMAND.LEFT_CLICK] = function (args) {
     xctrl.leftClick();
@@ -32,8 +32,8 @@ module.exports = (function (config) {
   function _executeApiCmd(cmdName, args, callback, info) {
     if (typeof _cmdMap[cmdName] === 'function') {
       _cmdMap[cmdName](args);
-      Logger.log(Logger.LOGLEVEL.INFO, 'Execute command: ' + cmdName,
-                 LOGNAME, info);
+      Logger.log(Logger.LOGLEVEL.INFO, 'Execute command: ' + cmdName +
+        ' '  + args, LOGNAME, info);
       callback();
     } else {
       Logger.log(Logger.LOGLEVEL.ERROR, 'Unknown command: ' + cmdName,
