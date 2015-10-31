@@ -37,7 +37,7 @@ module.exports = (function (config) {
       callback();
     } else {
       Logger.log(Logger.LOGLEVEL.ERROR, 'Unknown command: ' + cmdName,
-                 LOGNAME, info);
+        LOGNAME, info);
     }
   }
 
