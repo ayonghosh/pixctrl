@@ -96,15 +96,15 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  touchpadEl.onmousemove = function (e) {
       var x = e.clientX;
       var y = e.clientY;
-      var deltaX = prevX - x;
-      var deltaY = prevY - y;
+      var deltaX = x - prevX;
+      var deltaY = y - prevY;
       var negativeDelta = 0;
-      if (dragging) {
+      //if (dragging) {
         if (prevX - x < 0 || prevY - y < 0) {
           negativeDelta = 1;
         }
   		  ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
-      }
+      //}
       prevX = x;
       prevY = y;
 	  };
