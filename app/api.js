@@ -5,13 +5,17 @@ module.exports = (function (config) {
   var LOGNAME = 'api';
 
   var COMMAND = {
-    MOUSE_MOVE  : 'mv',
-    LEFT_CLICK  : 'lc',
-    RIGHT_CLICK : 'rc',
-    KEY_STROKE  : 'ks'
+    INIT_DISPLAY : 'id',
+    MOUSE_MOVE   : 'mv',
+    LEFT_CLICK   : 'lc',
+    RIGHT_CLICK  : 'rc',
+    KEY_STROKE   : 'ks'
   }
 
   var _cmdMap = {};
+  _cmdMap[COMMAND.INIT_DISPLAY] = function (args) {
+    xctrl.initDisplay();
+  };
   _cmdMap[COMMAND.MOUSE_MOVE] = function (args) {
     xctrl.moveMouse(args[0], args[1]);
   };

@@ -49,7 +49,7 @@ var Logger    = require('./logger.js');
     };
   };
 
-  
+
   // Routes:
   // index
   router.addRoute('/', function (req, res, params) {
@@ -63,7 +63,7 @@ var Logger    = require('./logger.js');
     Logger.log(Logger.LOGLEVEL.INFO, req.method + ' /', LOGNAME, _info(req));
   });
 
-  
+
   // Create server
   server = http.createServer(function (req, res) {
 
@@ -72,6 +72,9 @@ var Logger    = require('./logger.js');
 
   	// We have a match!
   	if (match) match.fn(req, res, match.params);
+
+    // Init display
+    api.executeCmd(api.COMMAND.INIT_DISPLAY, [], null, {info: 'self'});
   });
 
   // Start web sockets+HTTP server
@@ -84,7 +87,8 @@ var Logger    = require('./logger.js');
     // API
     client.on('mv', function (coords) {
 	  var coordsArray = coords.split(',');
-      api.executeCmd(api.COMMAND.MOUSE_MOVE, [coordsArray[0], coordsArray[1]], null,
+      api.executeCmd(api.COMMAND.MOUSE_MOVE, [coordsArray[0], coordsArray[1]],
+        null,
         _getWSClientAddress(client));
     });
     client.on('lc', function () {
