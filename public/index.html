@@ -116,7 +116,9 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
         negativeDelta = 1;
       }
 
-      ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
+      if (dragFired) {
+        ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
+      }
 
       prevX = x;
       prevY = y;
