@@ -96,15 +96,18 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  touchpadEl.onmousemove = function (e) {
       var x = e.clientX;
       var y = e.clientY;
-      var deltaX = x - prevX;
-      var deltaY = y - prevY;
-      var negativeDelta = 0;
-      //if (dragging) {
-        if (prevX - x < 0 || prevY - y < 0) {
-          negativeDelta = 1;
-        }
-  		  ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
-      //}
+      var screenX = Math.round(x / touchpadEl.clientWidth * 592);
+      var screenY = Math.round(y / touchpadEl.clientHeight * 448);
+      // var deltaX = x - prevX;
+      // var deltaY = y - prevY;
+      // var negativeDelta = 0;
+      // //if (dragging) {
+      //   if (prevX - x < 0 || prevY - y < 0) {
+      //     negativeDelta = 1;
+      //   }
+  		//   ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
+      // //}
+      ws.emit('mv', (x + ',' + y + ',0'));
       prevX = x;
       prevY = y;
 	  };

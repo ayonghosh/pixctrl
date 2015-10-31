@@ -8,7 +8,7 @@ module.exports = (function () {
     exec('export DISPLAY=\':0.0\'');
   };
   function _moveMouseRelative(x, y, negativeDelta) {
-	  exec('xdotool mousemove_relative ' +
+	  exec('xdotool mousemove ' +
       (negativeDelta === '1' ? '--' : '') + x + ' ' + y);
   };
 
