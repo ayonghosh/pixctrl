@@ -32,8 +32,8 @@ module.exports = (function (config) {
   function _executeApiCmd(cmdName, args, callback, info) {
     if (typeof _cmdMap[cmdName] === 'function') {
       _cmdMap[cmdName](args);
-      Logger.log(Logger.LOGLEVEL.INFO, 'Execute command: ' + cmdName +
-        ' '  + args, LOGNAME, info);
+      // Logger.log(Logger.LOGLEVEL.INFO, 'Execute command: ' + cmdName +
+      //   ' '  + args, LOGNAME, info);
       callback();
     } else {
       Logger.log(Logger.LOGLEVEL.ERROR, 'Unknown command: ' + cmdName,
