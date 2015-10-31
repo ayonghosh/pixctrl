@@ -1,0 +1,16 @@
+{
+  "name": "pixctrl",
+  "version": "1.0.0",
+  "description": "X GUI control over the web",
+  "author": "Ayon Ghosh <ayonghosh88@gmail.com>",
+  "scripts": {
+    "start": "node app/index.js"
+  },
+  "dependencies": {
+    "routes": "2.1.0",
+    "socket.io": "*"
+  },
+  "preferGlobal": true,
+  "private": true,
+  "license": "BSD-2-Clause"
+}
