@@ -87,7 +87,8 @@ var Logger    = require('./logger.js');
     // API
     client.on('mv', function (coords) {
 	  var coordsArray = coords.split(',');
-      api.executeCmd(api.COMMAND.MOUSE_MOVE, [coordsArray[0], coordsArray[1]],
+      api.executeCmd(api.COMMAND.MOUSE_MOVE,
+        coordsArray,
         null,
         _getWSClientAddress(client));
     });

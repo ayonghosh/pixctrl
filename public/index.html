@@ -108,6 +108,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       //   }
   		//   ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
       // //}
+      rightMouseBtn.innerHTML = (x + ',' + y + ',0');
       ws.emit('mv', (x + ',' + y + ',0'));
       prevX = x;
       prevY = y;
