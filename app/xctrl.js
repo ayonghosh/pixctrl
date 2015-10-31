@@ -9,7 +9,7 @@ module.exports = (function () {
   };
   function _moveMouseRelative(x, y, negativeDelta) {
 	  exec('xdotool mousemove_relative ' +
-      (negativeDelta === '1' ? '--' : '') + x + ' ' + y);
+      (negativeDelta === '1' ? '-- ' : '') + x + ' ' + y);
   };
 
   function _leftClick() {
