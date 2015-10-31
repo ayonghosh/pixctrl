@@ -71,7 +71,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  var host = window.location.hostname;
 	  var ws = null;
 
-    var dragging = false;
+    var dragFired = 0;
     var prevX = 0, prevY = 0;
 
 	  if ('WebSocket' in window) {
@@ -94,8 +94,15 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       dragging = false;
     };
 
+    touchpadEl.ontouchstart = function (e) {
+      dragFired = 0;
+    };
+
     touchpadEl.ontouchmove = function (e) {
       e.preventDefault();
+      if (dragFired < 2) {
+        return;
+      }
 
       var touch = e.touches[0];
       var x = Math.round(touch.pageX);
@@ -113,6 +120,8 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 
       prevX = x;
       prevY = y;
+
+      dragFired++;
     };
 	</script>
   </body>
