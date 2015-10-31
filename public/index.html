@@ -93,27 +93,36 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
     touchpadEl.onmouseup = function () {
       dragging = false;
     };
-	  touchpadEl.ontouchmove = function (e) {
-      var touch = e.touches[0];
-      touch.preventDefault();
-      var x = touch.clientX || (touch.pageX);
-      var y = touch.clientY || (touch.pageY);
+
+    touchpalEl.onclick = function (e) {
+      var x = e.clientX;
+      var y = e.clientY;
       var screenX = Math.round(x / touchpadEl.clientWidth * 592);
-      var screenY = Math.round(y / touchpadEl.clientHeight * 448);
-      // var deltaX = x - prevX;
-      // var deltaY = y - prevY;
-      // var negativeDelta = 0;
-      // //if (dragging) {
-      //   if (prevX - x < 0 || prevY - y < 0) {
-      //     negativeDelta = 1;
-      //   }
-  		//   ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
-      // //}
-      rightMouseBtn.innerHTML = (x + ',' + y + ',0');
-      ws.emit('mv', (screenX + ',' + screenY + ',0'));
-      prevX = screenX;
-      prevY = screenY;
-	  };
+      var screenY = Math.round(y / touchpadEl.clientWidth * 448);
+
+      ws.emit('mv', (x + ',' + y + ',0'));
+    };
+	  // touchpadEl.ontouchmove = function (e) {
+    //   var touch = e.touches[0];
+    //   touch.preventDefault();
+    //   var x = touch.clientX || (touch.pageX);
+    //   var y = touch.clientY || (touch.pageY);
+    //   var screenX = Math.round(x / touchpadEl.clientWidth * 592);
+    //   var screenY = Math.round(y / touchpadEl.clientHeight * 448);
+    //   // var deltaX = x - prevX;
+    //   // var deltaY = y - prevY;
+    //   // var negativeDelta = 0;
+    //   // //if (dragging) {
+    //   //   if (prevX - x < 0 || prevY - y < 0) {
+    //   //     negativeDelta = 1;
+    //   //   }
+  	// 	//   ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
+    //   // //}
+    //   rightMouseBtn.innerHTML = (x + ',' + y + ',0');
+    //   ws.emit('mv', (screenX + ',' + screenY + ',0'));
+    //   prevX = screenX;
+    //   prevY = screenY;
+	  // };
 	</script>
   </body>
 </html>
