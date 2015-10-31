@@ -72,6 +72,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  var ws = null;
 
     var dragging = false;
+    var prevX = 0, prevY = 0;
 
 	  if ('WebSocket' in window) {
 	    ws = io.connect('ws://' + host + ':5001');
@@ -93,11 +94,19 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       dragging = false;
     };
 	  touchpadEl.onmousemove = function (e) {
+      var x = e.clientX;
+      var y = e.clientY;
+      var deltaX = prevX - x;
+      var deltaY = prevY - y;
+      var negativeDelta = 0;
       if (dragging) {
-        var x = e.clientX;
-  		  var y = e.clientY;
-  		  ws.emit('mv', (x + ',' + y));
+        if (prevX - x < 0 || prevY - y < 0) {
+          negativeDelta = 1;
+        }
+  		  ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
       }
+      prevX = x;
+      prevY = y;
 	  };
 	</script>
   </body>
