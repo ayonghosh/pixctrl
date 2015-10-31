@@ -97,12 +97,12 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
     touchpadEl.ontouchstart = function (e) {
       dragFired = 0;
     };
+    touchpadEl.ontouchend = function (e) {
+      prevX = prevY = 0;
+    };
 
     touchpadEl.ontouchmove = function (e) {
       e.preventDefault();
-      if (dragFired < 2) {
-        return;
-      }
 
       var touch = e.touches[0];
       var x = Math.round(touch.pageX);
