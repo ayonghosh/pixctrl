@@ -98,7 +98,12 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	    ws.emit('lc');
 	  };
 	  touchpadEl.onclick = function () {
-	     ws.emit('lc');
+	    if (keyInputInFocus) {
+		  textInputEl.blur();
+		  touchpadEl.focus();
+		} else {
+	      ws.emit('lc');
+		}
 	  };
 	  rightMouseBtn.onclick = function () {
 	    ws.emit('rc');
@@ -167,6 +172,12 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	    var keyString = textInputEl.value;
 	    ws.emit('ks', (keyString + ',' + e.keyCode));
 		textInputEl.value = '';
+	  };
+	  textInputEl.onfocus = function (e) {
+	    keyInputInFocus = true;
+	  };
+	  textInputEl.onblue = function (e) {
+	    keyInputInFocus = false;
 	  };
 	</script>
   </body>
