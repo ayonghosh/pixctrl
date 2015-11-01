@@ -111,7 +111,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  
 	  setInterval(function () {
 		clockTick = !clockTick;
-	  }, 100);
+	  }, 20);
 	  
 	  var deltaX = 0;
 	  var deltaY = 0;
@@ -125,10 +125,6 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 
 	    var dx = x - prevX;
 	    var dy = y - prevY;
-		
-		//
-		//deltaX = dx;
-		//deltaY = dy;
 		
 		if (clockTick) {
 		  var negativeDelta = 0;
