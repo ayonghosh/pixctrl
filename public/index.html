@@ -109,10 +109,10 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       touchpadEl.onmouseup = function () {
         dragging = false;
       };
-      /*
+      
       touchpadEl.ontouchstart = function (e) {
         dragFired = 0;
-      };*/
+      };
       touchpadEl.ontouchend = function (e) {
         prevX = prevY = 0;
       };
@@ -124,7 +124,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  var deltaX = 0;
 	  var deltaY = 0;
 	  
-      touchpadEl.ontouchmove = /*touchpadEl.onmousemove = */
+      touchpadEl.ontouchmove = touchpadEl.onmousemove = 
 	  function (e) {
 	    e.preventDefault();
 		
@@ -134,10 +134,10 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	      x = Math.round(touch.pageX);
 	      y = Math.round(touch.pageY);
 		} 
-		/*else {
+		else {
 		  x = Math.round(e.clientX);
 		  y = Math.round(e.clientY);
-		}*/
+		}
 
 	    var dx = x - prevX;
 	    var dy = y - prevY;
@@ -148,7 +148,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 		    negativeDelta = 1;
 	      }
 
-	      if (dragFired) {
+	      if (dragFired && !e.shiftKey) {
 		    ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
 			deltaX = deltaY = 0;
 	      }
