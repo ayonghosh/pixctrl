@@ -134,6 +134,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 
 	      if (dragFired) {
 		    ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
+			deltaX = deltaY = 0;
 	      }
 		} else {
 		  deltaX += dx;
