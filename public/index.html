@@ -120,7 +120,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  
 	  
 
-      touchpadEl.ontouchmove = utils.debounce(function (e) {
+      touchpadEl.ontouchmove = function (e) {
 	    e.preventDefault();
 
 	    var touch = e.touches[0];
@@ -143,7 +143,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	    prevY = y;
 
 	    dragFired++;
-      }, 100);
+      };
 	</script>
   </body>
 </html>
