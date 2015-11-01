@@ -155,7 +155,6 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       };
 	  
 	  textInputEl.onkeyup = function (e) {
-	  touchpadEl.innerHTML = e.keyCode;
 	    var keyString = textInputEl.value;
 	    ws.emit('ks', (keyString + ',' + e.keyCode));
 		textInputEl.value = '';
