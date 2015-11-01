@@ -124,7 +124,8 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  var deltaX = 0;
 	  var deltaY = 0;
 	  
-      touchpadEl.ontouchmove = /*touchpadEl.onmousemove*/ = function (e) {
+      touchpadEl.ontouchmove = /*touchpadEl.onmousemove = */
+	  function (e) {
 	    e.preventDefault();
 		
 		var x, y;
