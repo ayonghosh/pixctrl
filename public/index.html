@@ -133,9 +133,6 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	      x = Math.round(touch.pageX);
 	      y = Math.round(touch.pageY);
 		} else {
-		  if (e.shiftKey) {
-		    return;
-		  }
 		  x = Math.round(e.clientX);
 		  y = Math.round(e.clientY);
 		}
@@ -149,7 +146,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 		    negativeDelta = 1;
 	      }
 
-	      if (dragFired) {
+	      if (dragFired && !e.shiftKey) {
 		    ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
 			deltaX = deltaY = 0;
 	      }
