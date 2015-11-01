@@ -9,8 +9,8 @@ var Logger    = require('./logger.js');
 (function () {
   var PORT                 = 5001;
   var LOGNAME              = 'server';
-  var INDEX_FILE_PATH      = 'public/index.html';
-  var MANIFEST_FILE_PATH   = 'public/manifest.json';
+  var INDEX_FILE_PATH      = __dirname + '/public/index.html';
+  var MANIFEST_FILE_PATH   = __dirname + '/public/manifest.json';
 
   var server;
   var socket;
