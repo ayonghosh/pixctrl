@@ -122,13 +122,19 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  
 	  var deltaX = 0;
 	  var deltaY = 0;
-
-      touchpadEl.ontouchmove = function (e) {
+	  
+      touchpadEl.ontouchmove = touchpadEl.onmousemove = function (e) {
 	    e.preventDefault();
-
-	    var touch = e.touches[0];
-	    var x = Math.round(touch.pageX);
-	    var y = Math.round(touch.pageY);
+		
+		var x, y;
+		if (e.touches) {
+	      var touch = e.touches[0];
+	      x = Math.round(touch.pageX);
+	      y = Math.round(touch.pageY);
+		} else {
+		  x = Math.round(e.clientX);
+		  y = Math.round(e.clientY);
+		}
 
 	    var dx = x - prevX;
 	    var dy = y - prevY;
