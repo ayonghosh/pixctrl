@@ -21,13 +21,14 @@ module.exports = (function () {
   };
 
   function _keyStroke(key) {
-    exec('xdotool key ' + key);
+    exec('xdotool type \'' + key + '\'');
   };
 
   return {
     initDisplay : _initDisplay,
     moveMouse   : _moveMouseRelative,
-	  leftClick   : _leftClick,
-	  rightClick  : _rightClick
+	leftClick   : _leftClick,
+	rightClick  : _rightClick,
+	keyStroke   : _keyStroke  
   };
 })();

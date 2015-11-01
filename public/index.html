@@ -46,9 +46,13 @@
   	}
 	.kbd-btn {
 	  display: table-cell;
-	  width: 20%;
+	  width: 100%;
+	  height: 100%;
 	  border: none;
 	  box-sizing: border-box;
+	  padding: 0;
+	  margin: 0;
+	  background-color: #F5F5F5;
 	}
     </style>
   </head>
@@ -73,17 +77,20 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  var touchpadEl     = document.getElementById('touchpad');
 	  var leftMouseBtn   = document.getElementById('left-btn');
 	  var rightMouseBtn  = document.getElementById('right-btn');
+	  var textInputEl    = document.getElementById('kbd-input');
 
 	  var host = window.location.hostname;
+	  var port = window.location.port;
 	  var ws = null;
 
       var dragFired = 0;
       var prevX = 0, prevY = 0;
+	  var pulseDuration = 20;  // 20 ms
 	  
 	  var clockTick = false;
 
 	  if ('WebSocket' in window) {
-	    ws = io.connect('ws://' + host + ':5001');
+	    ws = io.connect('ws://' + host + ':' + port);
       }
 
 	  leftMouseBtn.onclick = function () {
@@ -111,7 +118,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  
 	  setInterval(function () {
 		clockTick = !clockTick;
-	  }, 20);
+	  }, pulseDuration);
 	  
 	  var deltaX = 0;
 	  var deltaY = 0;
@@ -146,6 +153,12 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 
 	    dragFired++;
       };
+	  
+	  textInputEl.onkeyup = function (e) {
+	    var keystroke = textInputEl.value;
+	    ws.emit('ks', keystroke);
+		textInputEl.value = '';
+	  };
 	</script>
   </body>
 </html>
