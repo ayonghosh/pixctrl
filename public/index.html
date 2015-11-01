@@ -108,11 +108,11 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       touchpadEl.ontouchend = function (e) {
         prevX = prevY = 0;
       };
-	  /*
+	  
 	  setInterval(function () {
 		clockTick = !clockTick;
 	  }, 100);
-	  */
+	  
 	  var deltaX = 0;
 	  var deltaY = 0;
 
@@ -127,10 +127,10 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	    var dy = y - prevY;
 		
 		//
-		deltaX = dx;
-		deltaY = dy;
+		//deltaX = dx;
+		//deltaY = dy;
 		
-		//if (clockTick) {
+		if (clockTick) {
 		  var negativeDelta = 0;
 	      if (deltaX < 0 || deltaY < 0) {
 		    negativeDelta = 1;
@@ -138,12 +138,12 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 
 	      if (dragFired) {
 		    ws.emit('mv', (deltaX + ',' + deltaY + ',' + negativeDelta));
-			//deltaX = deltaY = 0;
+			deltaX = deltaY = 0;
 	      }
-		/*} else {
+		} else if (dragFired) {
 		  deltaX += dx;
 		  deltaY += dy;
-		}*/
+		}
 
 	    prevX = x;
 	    prevY = y;
