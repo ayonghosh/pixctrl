@@ -155,8 +155,8 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       };
 	  
 	  textInputEl.onkeyup = function (e) {
-	    var keystroke = textInputEl.value;
-	    ws.emit('ks', keystroke);
+	    var keyString = textInputEl.value;
+	    ws.emit('ks', (keyString + ',' + e.keyCode));
 		textInputEl.value = '';
 	  };
 	</script>

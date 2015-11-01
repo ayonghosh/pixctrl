@@ -100,8 +100,10 @@ var Logger    = require('./logger.js');
       api.executeCmd(api.COMMAND.RIGHT_CLICK, [], null,
         _getWSClientAddress(client));
     });
-    client.on('ks', function (key) {
-      api.executeCmd(api.COMMAND.KEY_STROKE, [key], null,
+    client.on('ks', function (keyInfo) {
+	  var keyInfoArray = keyInfo.split(',');
+	  var keyCode = parseInt(keyInfoArray[1], 10);
+      api.executeCmd(api.COMMAND.KEY_STROKE, [keyInfoArray[0], keyCode], null,
         _getWSClientAddress(client));
     });
   });
