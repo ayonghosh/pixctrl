@@ -16,7 +16,7 @@ Dependencies:
 4. Navigate to root of the repo
 5. npm install
 6. node app/index.js (or nodejs app/index.js, depending on the exact command on your system)
-7. Connect a client over HTTP to port 5001
+7. Connect from your browser over HTTP to port 5001
 
 ###### Notes:
 
