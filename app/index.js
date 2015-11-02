@@ -5,7 +5,6 @@ var io        = require('socket.io');
 
 var api       = require('./api.js');
 var Logger    = require('./logger.js');
-var template  = require('./template.js');
 
 (function () {
   var PORT                 = 5001;
@@ -29,8 +28,8 @@ var template  = require('./template.js');
   };
 
   function _generateClientResponse() {
-    return template(fs.readFileSync(INDEX_FILE_PATH).toString(),
-      {COMMAND: JSON.stringify(api.COMMAND)});
+    var str = fs.readFileSync(INDEX_FILE_PATH).toString();
+    return str.replace('<%COMMAND%>', JSON.stringify(api.COMMAND));
   };
 
   function _wsBroadcast(event, msg) {
