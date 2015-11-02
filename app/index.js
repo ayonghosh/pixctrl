@@ -5,6 +5,7 @@ var io        = require('socket.io');
 
 var api       = require('./api.js');
 var Logger    = require('./logger.js');
+var template  = require('./template.js');
 
 (function () {
   var PORT                 = 5001;
@@ -28,7 +29,8 @@ var Logger    = require('./logger.js');
   };
 
   function _generateClientResponse() {
-    return fs.readFileSync(INDEX_FILE_PATH);
+    return template(fs.readFileSync(INDEX_FILE_PATH).toString(),
+      {COMMAND: JSON.stringify(api.COMMAND)});
   };
 
   function _wsBroadcast(event, msg) {
@@ -67,11 +69,11 @@ var Logger    = require('./logger.js');
   // Create server
   server = http.createServer(function (req, res) {
 
-  	// Check if the HTTP Request URL matches on of our routes.
-  	var match = router.match(req.url);
+    // Check if the HTTP Request URL matches on of our routes.
+    var match = router.match(req.url);
 
-  	// We have a match!
-  	if (match) match.fn(req, res, match.params);
+    // We have a match!
+    if (match) match.fn(req, res, match.params);
 
     // Init display
     api.executeCmd(api.COMMAND.INIT_DISPLAY, [], null, {info: 'self'});
@@ -85,27 +87,27 @@ var Logger    = require('./logger.js');
 
   socket.sockets.on('connection', function (client) {
     // API
-    client.on('mv', function (coords) {
-	  var coordsArray = coords.split(',');
+    client.on(api.COMMAND.MOUSE_MOVE, function (coords) {
+    var coordsArray = coords.split(',');
       api.executeCmd(api.COMMAND.MOUSE_MOVE,
         coordsArray,
         null,
         _getWSClientAddress(client));
     });
-    client.on('lc', function () {
+    client.on(api.COMMAND.LEFT_CLICK, function () {
       api.executeCmd(api.COMMAND.LEFT_CLICK, [], null,
         _getWSClientAddress(client));
     });
-    client.on('rc', function () {
+    client.on(api.COMMAND.RIGHT_CLICK, function () {
       api.executeCmd(api.COMMAND.RIGHT_CLICK, [], null,
         _getWSClientAddress(client));
     });
-    client.on('ks', function (keyInfo) {
-	  var keyInfoArray = keyInfo.split(',');
-	  var keyCode = parseInt(keyInfoArray[1], 10);
-	  var modifierKeyCode = parseInt(keyInfoArray[2], 10);
-      api.executeCmd(api.COMMAND.KEY_STROKE, 
-	    [keyInfoArray[0], keyCode, modifierKeyCode], null,
+    client.on(api.COMMAND.KEY_STROKE, function (keyInfo) {
+    var keyInfoArray = keyInfo.split(',');
+    var keyCode = parseInt(keyInfoArray[1], 10);
+    var modifierKeyCode = parseInt(keyInfoArray[2], 10);
+      api.executeCmd(api.COMMAND.KEY_STROKE,
+      [keyInfoArray[0], keyCode, modifierKeyCode], null,
         _getWSClientAddress(client));
     });
   });
