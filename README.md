@@ -1,4 +1,4 @@
-# pixctrl
+# PiXCtrl
 X11 GUI control over the web.
 
 Developed for Raspberry Pi but should work on any X11 system.
