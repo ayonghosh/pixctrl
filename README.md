@@ -1,2 +1,20 @@
 # pixctrl
-Raspberry Pi GUI control over the web
+X11 GUI control over the web.
+
+Developed for Raspberry Pi but should work on any X11 system.
+
+Dependencies:
+
+* Node.js
+* xdotool
+ 
+##### Steps to install
+
+1. Git clone this repo
+2. Install nodejs (sudo apt-get install nodejs on Debian systems)
+3. Install xdotool (sudo apt-get install xdotool on Debian systems)
+4. Navigate to root of the repo
+5. npm install
+6. node app/index.js (or nodejs app/index.js, depending on the exact command on your system)
+7. Connect a client over HTTP to port 5001
+
