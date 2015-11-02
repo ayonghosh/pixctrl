@@ -34,7 +34,7 @@ module.exports = (function () {
   };
 
   function _sendNonPrintableKeyStroke(keySym) {
-    exec('xdotool key ' + keyStroke);
+    exec('xdotool key ' + keySym);
   };
 
   function _getModifierKeySym(keyCode) {
