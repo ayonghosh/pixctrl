@@ -1,7 +1,7 @@
 # PiXCtrl
 X11 GUI control over the web.
 
-Developed for Raspberry Pi but should work on any X11 system.
+Developed for Raspberry Pi but should work on any X11 system. Supports both desktop and mobile devices.
 
 Dependencies:
 
@@ -18,3 +18,6 @@ Dependencies:
 6. node app/index.js (or nodejs app/index.js, depending on the exact command on your system)
 7. Connect a client over HTTP to port 5001
 
+###### Notes:
+
+* Hold down the Shift key to disable touchpad on desktop (useful when you want to move the mouse to click on a button)
