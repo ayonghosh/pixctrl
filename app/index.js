@@ -103,7 +103,9 @@ var Logger    = require('./logger.js');
     client.on('ks', function (keyInfo) {
 	  var keyInfoArray = keyInfo.split(',');
 	  var keyCode = parseInt(keyInfoArray[1], 10);
-      api.executeCmd(api.COMMAND.KEY_STROKE, [keyInfoArray[0], keyCode], null,
+	  var modifierKeyCode = parseInt(keyInfoArray[2], 10);
+      api.executeCmd(api.COMMAND.KEY_STROKE, 
+	    [keyInfoArray[0], keyCode, modifierKeyCode], null,
         _getWSClientAddress(client));
     });
   });

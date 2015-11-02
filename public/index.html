@@ -75,6 +75,22 @@
 	  background-repeat: no-repeat;
 	  background-position: center;
 	}
+	#kbd {
+	  position: fixed;
+	  width: 100%;
+	  height: 50px;
+	  top: 0;
+	  display: table;
+	  background-color: #607D8B;
+	}
+	.kbd-btns {
+	  display: table-cell;
+	  border: 1px solid #f5f5f5;
+	  border-radius: 3px;
+	  margin: 5px 5px;
+	  vertical-align: middle;
+	  width: 14%;
+	}
     </style>
   </head>
   <body>
@@ -85,6 +101,15 @@
 	  <input type="text" id="kbd-input" class="kbd-btn" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
   	  <div id="right-btn" class="mouse-btn"></div>
   	</div>
+	<div id="kbd">
+	  <div id="shift" class="kbd-btns">Shift</div>
+	  <div id="ctrl" class="kbd-btns">Ctrl</div>
+	  <div id="alt" class="kbd-btns">Alt</div>
+	  <div id="left" class="kbd-btns">&lt;</div>
+	  <div id="right" class="kbd-btns">&gt;</div>
+	  <div id="up" class="kbd-btns">?</div>
+	  <div id="down" class="kbd-btns">?</div>
+	</div>
 
 	<!-- Socket.io -->
     <script type="text/javascript">
@@ -109,6 +134,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       var prevX = 0, prevY = 0;
 	  var pulseDuration = 20;  // 20 ms
 	  
+	  // square wave binary pulse state, high is true, false is low
 	  var clockTick = false;
 
 	  if ('WebSocket' in window) {
@@ -191,8 +217,18 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
 	  
 	  textInputEl.onkeyup = function (e) {
 	    var keyString = textInputEl.value;
-	    ws.emit('ks', (keyString + ',' + e.keyCode));
-		textInputEl.value = '';
+		var modifierKeyCode = 0;
+		if (e.shiftKey) {
+		  modifierKeyCode = 16;
+		} else if (e.ctrlKey) {
+		  modifierKeyCode = 17;
+		} else if (e.altKey) {
+		  modifierKeyCode = 18;
+		}
+		if (keyString) {
+	      ws.emit('ks', (keyString + ',' + e.keyCode + ',' + modifierKeyCode));
+		  textInputEl.value = '';
+		}
 	  };
 	  textInputEl.onfocus = function (e) {
 	    keyInputInFocus = true;

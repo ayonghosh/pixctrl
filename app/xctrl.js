@@ -7,8 +7,14 @@ module.exports = (function () {
   var KEY_CODE = {
     BACKSPACE: 8,
 	ENTER    : 13,
+	SHIFT    : 16,
+	CTRL     : 17,
+	ALT      : 18,
 	LEFT     : 37,
-	RIGHT    : 39
+	UP       : 38,
+	RIGHT    : 39,
+	DOWN     : 40,
+	ESCAPE   : 27
   };
 
   function _initDisplay() {
@@ -27,11 +33,24 @@ module.exports = (function () {
     exec('xdotool click ' + RIGHT_MOUSE_BUTTON);
   };
   
-  function _sendNonPrintableKeyStroke(keyStroke) {
+  function _sendNonPrintableKeyStroke(keySym) {
     exec('xdotool key ' + keyStroke);
   };
+  
+  function _getModifierKeySym(keyCode) {
+    switch (keyCode) {
+      case KEY_CODE.SHIFT:
+	    return 'Shift';
+	  case KEY_CODE.CTRL:
+	    return 'Ctrl';
+	  case KEY_CODE.ALT:
+	    return 'Alt';
+	  default:
+	    return '';
+    }
+  };
 
-  function _keyStroke(key, keyCode) {
+  function _keyStroke(key, keyCode, modifierKeyCode) {
     switch (keyCode) {
 	  case KEY_CODE.BACKSPACE: 
 	    _sendNonPrintableKeyStroke('BackSpace');
@@ -40,13 +59,24 @@ module.exports = (function () {
 	    _sendNonPrintableKeyStroke('Return');
 	    break;
 	  case KEY_CODE.LEFT:
-	    _sendNonPrintableKeyStroke('Left');
+	    _sendNonPrintableKeyStroke('Left'); // 'leftarrow'
 		break;
 	  case KEY_CODE.RIGHT:
-	    _sendNonPrintableKeyStroke('Right');
+	    _sendNonPrintableKeyStroke('Right'); // 'rightarrow'
+		break;
+	  case KEY_CODE.UP:
+	    _sendNonPrintableKeyStroke('Up');
+		break;
+	  case KEY_CODE.DOWN:
+	    _sendNonPrintableKeyStroke('Down');
+		break;
+	  case KEY_CODE.ESCAPE:
+	    _sendNonPrintableKeyStroke('Escape');
 		break;
 	  default:
-	    exec('xdotool type \'' + key + '\'');
+	    exec('xdotool type \'' + 
+		  (modifier ? _getModifierKeySym(modifierKeyCode) + '+' : '')
+		  + ' ' + key + '\'');
 		break;
 	}
   };
