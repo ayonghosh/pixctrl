@@ -76,7 +76,7 @@ module.exports = (function () {
       default:
         exec('xdotool type \'' +
         (modifierKeyCode ? _getModifierKeySym(modifierKeyCode) + '+' : '')
-        + ' ' + key + '\'');
+         + key + '\'');
       break;
     }
   };
