@@ -266,7 +266,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       }
     };
     escKey.onclick = function () {
-
+      ws.emit(COMMAND.KEY_STROKE, ('' + ',' + 27 + ',' + '0'));
     };
     ctrlKey.onclick = function () {
       toggleKey(ctrlKey);
