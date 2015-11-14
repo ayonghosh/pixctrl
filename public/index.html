@@ -111,11 +111,13 @@
   	</div>
   	<div id="kbd">
       <div id="esc" class="">Esc</div>
-  	  <div id="ctrl" class="">Ctrl</div>
-  	  <div id="left" class="">◀</div>
-  	  <div id="right" class="">▶</div>
-  	  <div id="up" class="">▲</div>
-  	  <div id="down" class="">▼</div>
+      <div id="ctrl" class="">Ctrl</div>
+      <div id="left" class="">◀</div>
+      <div id="right" class="">▶</div>
+      <div id="up" class="">▲</div>
+      <div id="down" class="">▼</div>
+      <div id="backspace" class="">⌫</div>
+      <div id="enter" class="">⏎</div>
   	</div>
 
 	  <!-- Socket.io -->
@@ -138,6 +140,8 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
     var rightKey       = document.getElementById('right');
     var upKey          = document.getElementById('up');
     var downKey        = document.getElementById('down');
+    var backSpaceKey   = document.getElementById('backspace');
+    var enterKey       = document.getElementById('enter');
 
 	  var host = window.location.hostname;
 	  var port = window.location.port;
@@ -266,6 +270,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
     };
     ctrlKey.onclick = function () {
       toggleKey(ctrlKey);
+      textInputEl.focus();
     };
     leftKey.onclick = function () {
       ws.emit(COMMAND.KEY_STROKE, ('' + ',' + 37 + ',' + '0'));
@@ -279,6 +284,12 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
     downKey.onclick = function () {
       ws.emit(COMMAND.KEY_STROKE, ('' + ',' + 40 + ',' + '0'));
     };
+    backSpaceKey.onclick = function () {
+      ws.emit(COMMAND.KEY_STROKE, ('' + ',' + 8 + ',' + '0'));
+    }
+    enterKey.onclick = function () {
+      ws.emit(COMMAND.KEY_STROKE, ('' + ',' + 13 + ',' + '0'));
+    }
 
 	  textInputEl.onfocus = function (e) {
 	    keyInputInFocus = true;
