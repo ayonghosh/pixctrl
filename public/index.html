@@ -231,6 +231,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
     };
 
 	  textInputEl.onkeydown = function (e) {
+      e.preventDefault();
       var keyString = textInputEl.value;
   		var modifierKeyCode = 0;
   		if (e.shiftKey) {
