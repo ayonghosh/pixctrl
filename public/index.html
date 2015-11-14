@@ -230,7 +230,7 @@ this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];call
       dragFired++;
     };
 
-	  textInputEl.onkeypress = function (e) {
+	  textInputEl.onkeydown = function (e) {
       var keyString = textInputEl.value;
   		var modifierKeyCode = 0;
   		if (e.shiftKey) {
