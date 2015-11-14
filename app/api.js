@@ -26,7 +26,7 @@ module.exports = (function (config) {
     xctrl.rightClick();
   };
   _cmdMap[COMMAND.KEY_STROKE] = function (args) {
-    xctrl.keyStroke(args[0], args[1], args[3]);
+    xctrl.keyStroke(args[0], args[1], args[2]);
   };
 
   function _executeApiCmd(cmdName, args, callback, info) {
