@@ -74,7 +74,7 @@ module.exports = (function () {
         _sendNonPrintableKeyStroke('Escape');
         break;
       default:
-        exec('xdotool type \'' +
+        exec('xdotool key \'' +
         (modifierKeyCode ? _getModifierKeySym(modifierKeyCode) + '+' : '')
          + key + '\'');
       break;
